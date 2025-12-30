@@ -7,7 +7,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { AuthProvider } from '../contexts/AuthContext';
 
 export const unstable_settings = {
-  anchor: 'splash',
+  initialRouteName: 'splash',
 };
 
 export default function RootLayout() {
