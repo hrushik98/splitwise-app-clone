@@ -44,7 +44,7 @@ export default function EmailVerificationScreen() {
   const handleCheckVerification = async () => {
     if (user && user.emailVerified) {
       Alert.alert('Success', 'Email verified successfully!', [
-        { text: 'OK', onPress: () => router.replace('/(tabs)' as any) },
+        { text: 'OK', onPress: () => router.replace('/(tabs)/home' as any) },
       ]);
     } else {
       Alert.alert('Not Verified', 'Please verify your email before continuing.');

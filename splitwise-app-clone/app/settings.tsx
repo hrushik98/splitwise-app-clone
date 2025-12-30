@@ -6,6 +6,7 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { router } from 'expo-router';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface SettingItem {
   id: string;
@@ -53,6 +54,7 @@ const settingsSections = [
 export default function SettingsScreen() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? 'light'];
+  const { logout } = useAuth();
   const [toggleStates, setToggleStates] = useState<Record<string, boolean>>({
     'dark-mode': false,
     'face-id': true,
@@ -141,7 +143,12 @@ export default function SettingsScreen() {
           </View>
         ))}
 
-        <TouchableOpacity style={styles.logoutButton}>
+        <TouchableOpacity 
+          style={styles.logoutButton}
+          onPress={async () => {
+            await logout();
+            router.replace('/login');
+          }}>
           <ThemedText style={[styles.logoutText, { color: colors.danger }]}>
             Log Out
           </ThemedText>
